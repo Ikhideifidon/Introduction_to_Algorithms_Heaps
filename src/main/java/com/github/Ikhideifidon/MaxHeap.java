@@ -1,21 +1,21 @@
 package com.github.Ikhideifidon;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A class that implements a dynamic Maximum Heap using an array as the underlying data structure.
  * @param <E>
  */
-public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
+public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E>, Iterator<E>  {
     private static final int DEFAULT_CAPACITY = 16;
-    private final int capacity;
     private E[] container;
     private int t;
 
     public MaxHeap(int capacity) {
         if (capacity < 1)
             throw new ArrayStoreException("Heap underflow");
-        this.capacity = capacity;
         this.t = 0;
         //noinspection unchecked
         this.container = (E[]) new Object[capacity + 1];
@@ -27,7 +27,7 @@ public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
 
     /**
      * Create a Maximum Heap from a given array.
-     * @param keys
+     * @param keys: The given array.
      */
     public MaxHeap(E[] keys) {
         this(keys.length);
@@ -43,8 +43,8 @@ public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
     @Override
     public void insert(E data) {
         // Check if capacity is full
-        if (t >= capacity - 1)
-            ensureCapacity(2 * capacity);
+        if (t >= container.length - 1)
+            ensureCapacity(2 * container.length);
         container[++t] = data;
         trickleUp(t);
     }
@@ -55,8 +55,22 @@ public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
         return container[1];
     }
 
+
+    private static int index = 0;
     @Override
-    public E remove() {
+    public boolean hasNext() {
+        return ++index != t;
+    }
+
+    @Override
+    public E next() {
+        if (!hasNext())
+            throw new NoSuchElementException();
+        return container[index];
+    }
+
+    @Override
+    public E delete() {
         if (this.isEmpty())
             throw new NullPointerException("Heap is empty");
 
@@ -65,12 +79,12 @@ public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
         // Deallocate the space at t
         container[t--] = null;
         trickleDown(1);
-        return root;
-    }
 
-    @Override
-    public E delete(E data) {
-        return null;
+        // Underlying array size halving.
+        // Space conservation
+        if (t < container.length / 4)
+            ensureCapacity(container.length / 2);
+        return root;
     }
 
     @Override
@@ -107,11 +121,6 @@ public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
     }
 
     @Override
-    public void sort() {
-
-    }
-
-    @Override
     public E keyOf(int position) {
         if (position < 1 || position > t)
             throw new ArrayIndexOutOfBoundsException(position + " is out of range");
@@ -122,7 +131,7 @@ public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
         if (position == 1) return;                  // Does the heap contains only one element?
 
         // Find the parent of this position
-        int parent = this.t >> 1;
+        int parent = position >> 1;
         if (container[parent].compareTo(container[position]) < 0) {
             swap(position, parent);
             trickleUp(parent);
@@ -137,13 +146,6 @@ public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
         // Check out of bounds
         if (left > t || right > t) return;
 
-        // If both left and right children are not leaves
-        int maxChildIndex = container[left].compareTo(container[right]) > 0 ? left : right;
-        if (container[maxChildIndex].compareTo(container[parent]) > 0) {
-            swap(parent, maxChildIndex);
-            trickleDown(maxChildIndex);
-        }
-
         // if left is a leaf node
         if (left == t && container[left].compareTo(container[parent]) > 0) {
             swap(parent, left);
@@ -153,6 +155,14 @@ public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
         // If right is a leaf node
         if (right == t && container[right].compareTo(container[parent]) > 0) {
             swap(parent, right);
+            return;
+        }
+
+        // If both left and right children are not leaves
+        int maxChildIndex = container[left].compareTo(container[right]) > 0 ? left : right;
+        if (container[maxChildIndex].compareTo(container[parent]) > 0) {
+            swap(parent, maxChildIndex);
+            trickleDown(maxChildIndex);
         }
     }
 
@@ -164,5 +174,11 @@ public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E> {
         E temp = container[from];
         container[from] = container[to];
         container[to] = temp;
+    }
+
+    @Override
+    public String toString() {
+        this.container = Arrays.copyOfRange(this.container, 1, this.container.length);
+        return Arrays.toString(this.container);
     }
 }
