@@ -10,6 +10,7 @@ public class HeapSort<E extends Object & Comparable<E>> {
 
         for (int i = n - 1; i >= 0; i--) {
             swap(keys, i, 0);
+            // Decrease the length of the array
             heapify(keys, i, 0);
         }
     }
