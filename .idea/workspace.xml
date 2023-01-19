@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a97704a9-c7a6-4fec-b0eb-62c088ffe441" name="Changes" comment="Heaps">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/HeapSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/github/Ikhideifidon/MaxHeapTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/Heap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/Heap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/MaxHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/MaxHeap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

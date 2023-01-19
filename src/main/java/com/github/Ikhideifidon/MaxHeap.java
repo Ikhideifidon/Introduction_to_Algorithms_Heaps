@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * A class that implements a dynamic Maximum Heap using an array as the underlying data structure.
  * @param <E>
  */
-public class MaxHeap<E extends Object & Comparable<E>> implements Heap<E>, Iterator<E>  {
+public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> implements Heap<E>, Iterator<E>  {
     private static final int DEFAULT_CAPACITY = 16;
     private E[] container;
     private int t;
