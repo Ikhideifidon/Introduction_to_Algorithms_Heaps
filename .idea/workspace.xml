@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a97704a9-c7a6-4fec-b0eb-62c088ffe441" name="Changes" comment="Heaps">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/PriorityQueue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/Heap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/Heap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/HeapSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/HeapSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/MaxHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/MaxHeap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/github/Ikhideifidon/MaxHeapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/github/Ikhideifidon/MaxHeapTest.java" afterDir="false" />
@@ -56,7 +53,20 @@
       <recent name="com.github.Ikhideifidon" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MaxHeapTest.sort">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.github.Ikhideifidon.Main" />
+      <module name="Introduction_to_Algorithms_Heaps" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.Ikhideifidon.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MaxHeapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Introduction_to_Algorithms_Heaps" />
       <extension name="coverage">
@@ -83,22 +93,6 @@
       <option name="PACKAGE_NAME" value="com.github.Ikhideifidon" />
       <option name="MAIN_CLASS_NAME" value="com.github.Ikhideifidon.MaxHeapTest" />
       <option name="METHOD_NAME" value="insert" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MaxHeapTest.keyOf" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Introduction_to_Algorithms_Heaps" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.github.Ikhideifidon.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.github.Ikhideifidon" />
-      <option name="MAIN_CLASS_NAME" value="com.github.Ikhideifidon.MaxHeapTest" />
-      <option name="METHOD_NAME" value="keyOf" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -138,11 +132,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MaxHeapTest.sort" />
-        <item itemvalue="JUnit.MaxHeapTest.keyOf" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.MaxHeapTest" />
         <item itemvalue="JUnit.MaxHeapTest.insert" />
         <item itemvalue="JUnit.MaxHeapTest.size" />
+        <item itemvalue="JUnit.MaxHeapTest.sort" />
       </list>
     </recent_temporary>
   </component>
@@ -183,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674151941374</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Heaps">
+      <created>1674237509231</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1674237509231</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,5 +201,21 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Heaps" />
     <option name="LAST_COMMIT_MESSAGE" value="Heaps" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/MaxHeap.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/github/Ikhideifidon/MaxHeap.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

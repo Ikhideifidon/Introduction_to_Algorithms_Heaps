@@ -45,10 +45,10 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
     @Override
     public void insert(E data) {
         // Check if capacity is full
-        if (t >= container.length - 1)
+        if (t >= container.length)
             ensureCapacity(2 * container.length);
-        container[t++] = data;
-        trickleUp(--t);
+        container[t] = data;
+        trickleUp(t++);
     }
 
     @Override
@@ -170,6 +170,7 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
 
     @Override
     public String toString() {
-        return Arrays.toString(container);
+        E[] copy = Arrays.copyOfRange(this.container, 0, t);
+        return Arrays.toString(copy);
     }
 }

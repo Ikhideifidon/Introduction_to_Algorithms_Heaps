@@ -4,13 +4,15 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Integer[] keys = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
-//        HeapSort<Integer> heapSort = new HeapSort<>();
-//        heapSort.sort(keys);
 
+        MaxHeap<Integer> maxHeap = new MaxHeap<>(5);
+        maxHeap.insert(7);
+        maxHeap.insert(8);
+        maxHeap.insert(1);
+        maxHeap.insert(5);
+        maxHeap.insert(12);
+        maxHeap.insert(17);
 
-        MaxHeap<Integer> maxHeap = new MaxHeap<>();
-        maxHeap.sort(keys);
-        System.out.println(Arrays.toString(keys));
+        System.out.println(maxHeap);
     }
 }

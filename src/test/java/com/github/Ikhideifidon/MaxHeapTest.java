@@ -30,7 +30,7 @@ class MaxHeapTest {
     @Test
     void insert() {
         maxHeap.insert("christian");
-        Assertions.assertEquals(maxHeap.size(), strings.length);
+        Assertions.assertEquals(maxHeap.size(), strings.length + 1);
     }
 
     @Test
