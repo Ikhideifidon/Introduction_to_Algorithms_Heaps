@@ -5,9 +5,7 @@ public class HeapSort<E extends Object & Comparable<E>> {
     public void sort(E[] keys) {
         int n = keys.length;
         // Build a heap
-        for (int i = n / 2; i >= 0; i--)
-            heapify(keys, n, i);
-
+        buildHeap(keys);
         for (int i = n - 1; i >= 0; i--) {
             swap(keys, i, 0);
             // Decrease the length of the array
@@ -39,5 +37,11 @@ public class HeapSort<E extends Object & Comparable<E>> {
         E temp = keys[from];
         keys[from] = keys[to];
         keys[to] = temp;
+    }
+
+    void buildHeap(E[] keys) {
+        int n = keys.length;
+        for (int i = n / 2; i >= 0; i--)
+            heapify(keys, n, i);
     }
 }

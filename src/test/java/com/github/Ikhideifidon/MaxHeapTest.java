@@ -19,9 +19,7 @@ class MaxHeapTest {
     @BeforeEach
     public void setMaxHeap() {
         strings = new String[]{"please", "always", "be", "a", "good", "representative", "of", "your", "family", "everywhere", "you", "go"};
-        maxHeap = new MaxHeap<>(strings.length);
-        for (String string : strings)
-            maxHeap.insert(string);
+        maxHeap = new MaxHeap<>(strings);
     }
 
     @Test
@@ -32,7 +30,7 @@ class MaxHeapTest {
     @Test
     void insert() {
         maxHeap.insert("christian");
-        Assertions.assertEquals(maxHeap.size(), strings.length + 1);
+        Assertions.assertEquals(maxHeap.size(), strings.length);
     }
 
     @Test
@@ -61,15 +59,18 @@ class MaxHeapTest {
     void decreaseKey() {
     }
 
-//    @Test
-//    void sort() {
-//        Integer[] keys = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
-//        Heap<Integer> heap = new MaxHeap<>(keys);
-//        heap.sort(keys);
-//        out.println(Arrays.toString(keys));
-//    }
+    @Test
+    void sort() {
+        Integer[] keys = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
+        Integer[] clonedKeys = keys.clone();
+        MaxHeap<Integer> heap = new MaxHeap<>(keys);
+        heap.sort(keys);
+        Arrays.sort(clonedKeys);
+        Assertions.assertEquals(Arrays.toString(keys), Arrays.toString(clonedKeys));
+    }
 
     @Test
     void keyOf() {
+        out.println(maxHeap.keyOf(1));
     }
 }

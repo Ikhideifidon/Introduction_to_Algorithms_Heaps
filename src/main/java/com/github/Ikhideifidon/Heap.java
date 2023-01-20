@@ -3,7 +3,6 @@ package com.github.Ikhideifidon;
 public interface Heap<E extends Object & Comparable<E>> {
     int size();
     E peek();
-//    E remove();
     E delete();
     E keyOf(int position);
     boolean isEmpty();

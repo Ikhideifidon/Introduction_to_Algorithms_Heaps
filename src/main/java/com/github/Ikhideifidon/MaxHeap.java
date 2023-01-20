@@ -18,7 +18,7 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
             throw new ArrayStoreException("Heap underflow");
         this.t = 0;
         //noinspection unchecked
-        this.container = (E[]) new Object[capacity + 1];
+        this.container = (E[]) new Object[capacity];
     }
 
     public MaxHeap() {
@@ -29,10 +29,12 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
      * Create a Maximum Heap from a given array.
      * @param keys: The given array.
      */
+
     public MaxHeap(E[] keys) {
         this(keys.length);
-        for (E key : keys)
-            this.insert(key);
+        this.container = keys;
+        t = container.length;
+        buildHeap(keys);
     }
 
     @Override
@@ -45,21 +47,21 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
         // Check if capacity is full
         if (t >= container.length - 1)
             ensureCapacity(2 * container.length);
-        container[++t] = data;
-        trickleUp(t);
+        container[t++] = data;
+        trickleUp(--t);
     }
 
     @Override
     public E peek() {
         if (this.isEmpty()) throw new NullPointerException("Heap is empty");
-        return container[1];
+        return container[0];
     }
 
 
     private static int index = 0;
     @Override
     public boolean hasNext() {
-        return ++index != t;
+        return index++ != t;
     }
 
     @Override
@@ -71,14 +73,11 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
 
     @Override
     public E delete() {
-        if (this.isEmpty())
-            throw new NullPointerException("Heap is empty");
-
         E root = this.peek();
-        swap(t, 1);
+        swap(t - 1, 0);                     // t - 1 is the last index;
         // Deallocate the space at t
-        container[t--] = null;
-        trickleDown(1);
+        container[--t] = null;
+        trickleDown(0);
 
         // Underlying array size halving.
         // Space conservation
@@ -99,7 +98,7 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
      */
     @Override
     public void increaseKey(int position, E key) {
-        if (position < 1 || position > t)
+        if (position < 0 || position >= t)
             throw new ArrayIndexOutOfBoundsException(position + " is out of range");
         if (key.compareTo(container[position]) <= 0)
             throw new IllegalArgumentException(key + " cannot be less than or equal to " + container[position]);
@@ -110,7 +109,7 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
 
     @Override
     public void decreaseKey(int position, E key) {
-        if (position < 1 || position > t)
+        if (position < 0 || position >= t)
             throw new ArrayIndexOutOfBoundsException(position + " is out of range");
         if (key.compareTo(container[position]) >= 0)
             throw new IllegalArgumentException(key + " cannot be greater than or equal to " + container[position]);
@@ -122,13 +121,13 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
 
     @Override
     public E keyOf(int position) {
-        if (position < 1 || position > t)
+        if (position < 0 || position >= t)
             throw new ArrayIndexOutOfBoundsException(position + " is out of range");
         return container[position];
     }
 
     private void trickleUp(int position) {
-        if (position == 1) return;                  // Does the heap contains only one element?
+        if (position == 0) return;                  // Does the heap contain only one element?
 
         // Find the parent of this position
         int parent = position >> 1;
@@ -140,27 +139,20 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
 
     private void trickleDown(int parent) {
         // Find the left and the right children
-        int left = parent << 1;
-        int right = 1 + (parent << 1);
+        int maxChildIndex = parent;
+        int left =  1 + (parent << 1);
+        int right = 2 + (parent << 1);
 
-        // Check out of bounds
-        if (left > t || right > t) return;
+        // Check if left is inbound and if container[left] > container[maxChildIndex]
+        if (left < t && container[left].compareTo(container[maxChildIndex]) > 0)
+            maxChildIndex = left;
 
-        // if left is a leaf node
-        if (left == t && container[left].compareTo(container[parent]) > 0) {
-            swap(parent, left);
-            return;
-        }
+        // Check if right is inbound and if container[right] > container[maxChildIndex]
+        if (right < t && container[right].compareTo(container[maxChildIndex]) > 0)
+            maxChildIndex = right;
 
-        // If right is a leaf node
-        if (right == t && container[right].compareTo(container[parent]) > 0) {
-            swap(parent, right);
-            return;
-        }
-
-        // If both left and right children are not leaves
-        int maxChildIndex = container[left].compareTo(container[right]) > 0 ? left : right;
-        if (container[maxChildIndex].compareTo(container[parent]) > 0) {
+        // Swap and recurse
+        if (maxChildIndex != parent) {
             swap(parent, maxChildIndex);
             trickleDown(maxChildIndex);
         }
@@ -178,7 +170,6 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
 
     @Override
     public String toString() {
-        this.container = Arrays.copyOfRange(this.container, 1, this.container.length);
-        return Arrays.toString(this.container);
+        return Arrays.toString(container);
     }
 }
