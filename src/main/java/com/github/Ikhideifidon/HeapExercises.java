@@ -3,65 +3,113 @@ package com.github.Ikhideifidon;
 
 public class HeapExercises {
 
-    public static int youngTableauExtractMin(int[][] Y, int i, int j) {
+    /**
+     * Y = {
+     *          {2,  4,  5,  8},
+     *          {3,  9,  12, ∞},
+     *          {14, 16,  ∞, ∞},
+     *          {∞,  ∞,   ∞, ∞}
+     *     }
+     */
+    public static int extractMin(int[][] Y) {
         int m = Y.length;
         int n = Y[0].length;
-        int inf = Integer.MAX_VALUE;
-        /**
-         * Y = {
-         *          {2,  4,  5,  8},
-         *          {3,  9,  12, ∞},
-         *          {14, 16,  ∞, ∞},
-         *          {∞,  ∞,   ∞, ∞}
-         *     }
-         */
-        int result = Y[i][j];
-        youngTableauMaxHeapify(Y, i, j);
-
-
-
-        // Out of bounds
-        if (i >= m || j >= n) return;
-
-        if (Y[i][j] == inf)
-            return;
-
-
-
-
-
-
-
-
+        int min  = Y[0][0];
+        if (min == Integer.MAX_VALUE)
+            throw new ArrayIndexOutOfBoundsException("Young Tableau is empty");
+        Y[0][0] = Integer.MAX_VALUE;
+        youngifyTopDown(Y, 0, 0, m, n);
+        return min;
     }
 
-    private static void youngTableauMaxHeapify(int[][] Y, int i, int j, int m, int n) {
+    public static void insert(int[][] Y, int key) {
+        // Check if Y is non-full.
+        // If non-full put key in the last available spot (ideally, this should be at Y[m - 1][n - 1])
+        // This will violate the Young Tableau order.
+        // To correct this violation, minHeapify Y (youngifyBottomUp).
+        // Order is restored now.
+
+        int m = Y.length;
+        int n = Y[0].length;
+        if (Y[m - 1][n - 1] != Integer.MAX_VALUE)
+            throw new ArrayIndexOutOfBoundsException("Young Tableau is full");
+
+        Y[m - 1][n - 1] = key;
+        youngifyBottomUp(Y, m - 1, n - 1, m, n);
+    }
+
+    // minHeapify
+    private static void youngifyBottomUp(int[][] Y, int i, int j, int m, int n) {
         // Out of bounds
-        if (i >= m || j >= n) return;
-        int parent = Y[i][j];
-        int maxNeighbor = parent;
-        int downward = Y[i + 1][j];
-        int rightward = Y[i][j + 1];
-        if (downward > maxNeighbor)
-            maxNeighbor = downward;
+        if (i - 1 < 0 && j - 1 < 0) return;
 
-        if (rightward > maxNeighbor)
-            maxNeighbor = rightward;
+        // Base case
+        // Check if upward (Y[i - 1][j]) and leftward (Y[i][j - 1]) are less than Y[i][j]
+        if (Y[i][j] > Y[i - 1][j] && Y[i][j] > Y[i][j - 1]) return;
 
-        if (maxNeighbor != parent) {
-            swap(Y, parent, maxNeighbor);
-            if (maxNeighbor == downward)
-                youngTableauMaxHeapify(Y, i, j + 1, m , n);
-            else
-                youngTableauMaxHeapify(Y, i + 1, j, m, n);
+        int temp = Y[i][j];
+        if (Y[i - 1][j] < Y[i][j - 1]) {
+            // swap Y[i][j] with Y[i - 1][j]
+            Y[i][j] = Y[i - 1][j];
+            Y[i - 1][j] = temp;
+            youngifyBottomUp(Y, i - 1, j, m, n);
+        }
+
+        else {
+            // swap Y[i][j] with Y[i][j - 1]
+            Y[i][j] = Y[i][j - 1];
+            Y[i][j - 1] = temp;
+            youngifyBottomUp(Y, i, j - 1, m, n);
+        }
+
+        int temp = Y[i][j];
+        if (i - 1 < 0) {
+            if (Y[i][j] < Y[i][j - 1]) {
+                // swap Y[i][j] with Y[i][j - 1]
+                Y[i][j] = Y[i][j - 1];
+                Y[i][j - 1] = temp;
+                youngifyBottomUp(Y, i, j - 1, m, n);
+            }
+        }
+
+        else if (j - 1 < 0) {
+            if (Y[i][j] < Y[i - 1][j]) {
+                // swap Y[i][j] with Y[i - 1][j]
+                Y[i][j] = Y[i - 1][j];
+                Y[i - 1][j] = temp;
+                youngifyBottomUp(Y, i - 1, j, m, n);
+            }
         }
 
 
+
+        /
+
     }
 
-    private static void swap(int[][] Y, int parent, int neighbor) {
-        int temp = parent;
-        parent = neighbor;
-        neighbor = temp;
+    // MinHeapify
+    private static void youngifyTopDown(int[][] Y, int i, int j, int m, int n) {
+        // Out of bounds
+        if (i + 1 >= m || j + 1 >= n) return;
+
+        // Base case
+        if (Y[i][j + 1] == Y[i + 1][j] && Y[i + 1][j] == Integer.MAX_VALUE) return;                 // is Y empty?
+
+        int temp = Y[i][j];
+        if (Y[i][j + 1] < Y[i + 1][j]) {
+            // swap Y[i][j + 1] with Y[i][j]
+            Y[i][j] = Y[i][j + 1];
+            Y[i][j + 1] = temp;
+            youngifyTopDown(Y, i, j + 1, m , n);
+        }
+
+        else {
+            // swap Y[i + 1][j] with Y[i][j]
+            Y[i][j] = Y[i + 1][j];
+            Y[i + 1][j] = temp;
+            youngifyTopDown(Y, i + 1, j, m, n);
+        }
     }
 }
+
+

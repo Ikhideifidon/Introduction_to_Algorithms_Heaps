@@ -14,5 +14,27 @@ public class Main {
         maxHeap.insert(17);
 
         System.out.println(maxHeap);
+        int inf = Integer.MAX_VALUE;
+        int[][] Y = {
+                {2,   3,   4,   5},
+                {8,   9,   12,  14},
+                {16,  inf, inf, inf},
+                {inf, inf, inf, inf}
+        };
+
+        System.out.println(Arrays.deepToString(Y));
+        HeapExercises.insert(Y, 7);
+        System.out.println(Arrays.deepToString(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(HeapExercises.extractMin(Y));
+
     }
 }
