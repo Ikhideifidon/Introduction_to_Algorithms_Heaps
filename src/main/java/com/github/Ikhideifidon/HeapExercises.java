@@ -41,14 +41,18 @@ public class HeapExercises {
     // minHeapify
     private static void youngifyBottomUp(int[][] Y, int i, int j, int m, int n) {
         // Out of bounds
-        if (i - 1 < 0 && j - 1 < 0) return;
+        if (i < 0 && j < 0) return;
+
+        int parent = Y[i][j];
+        int leftward = (j - 1 >= 0)? Y[i][j - 1] : Integer.MAX_VALUE;
+        int upward = (i - 1 >= 0) ? Y[i - 1][j] : Integer.MAX_VALUE;
 
         // Base case
         // Check if upward (Y[i - 1][j]) and leftward (Y[i][j - 1]) are less than Y[i][j]
-        if (Y[i][j] > Y[i - 1][j] && Y[i][j] > Y[i][j - 1]) return;
+        if (parent > leftward && parent > upward) return;
 
         int temp = Y[i][j];
-        if (Y[i - 1][j] < Y[i][j - 1]) {
+        if (upward < leftward) {
             // swap Y[i][j] with Y[i - 1][j]
             Y[i][j] = Y[i - 1][j];
             Y[i - 1][j] = temp;
@@ -61,30 +65,6 @@ public class HeapExercises {
             Y[i][j - 1] = temp;
             youngifyBottomUp(Y, i, j - 1, m, n);
         }
-
-        int temp = Y[i][j];
-        if (i - 1 < 0) {
-            if (Y[i][j] < Y[i][j - 1]) {
-                // swap Y[i][j] with Y[i][j - 1]
-                Y[i][j] = Y[i][j - 1];
-                Y[i][j - 1] = temp;
-                youngifyBottomUp(Y, i, j - 1, m, n);
-            }
-        }
-
-        else if (j - 1 < 0) {
-            if (Y[i][j] < Y[i - 1][j]) {
-                // swap Y[i][j] with Y[i - 1][j]
-                Y[i][j] = Y[i - 1][j];
-                Y[i - 1][j] = temp;
-                youngifyBottomUp(Y, i - 1, j, m, n);
-            }
-        }
-
-
-
-        /
-
     }
 
     // MinHeapify
