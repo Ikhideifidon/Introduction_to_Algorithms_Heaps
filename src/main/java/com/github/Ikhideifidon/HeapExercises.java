@@ -156,6 +156,26 @@ public class HeapExercises {
         }
         return false;
     }
+
+    public boolean searchRecursively(int[][] Y, int key) {
+        int m = Y.length;
+        int n = Y[0].length;
+        return searchHelper(Y, key, m - 1, 0, m, n);
+    }
+
+    private boolean searchHelper(int[][] Y, int key, int i, int j, int m, int n) {
+        // BottomUp Approach
+        if (i >= 0 && j < n) {
+            if (Y[i][j] == key) 
+                return true;
+            else if (Y[i][j] > key)
+                return searchHelper(Y, key, i - 1, j, m, n);
+            else 
+                return searchHelper(Y, key, i, j + 1, m, n);
+        }
+        return false;
+    }
+
 }
 
 
