@@ -22,19 +22,20 @@ public class Main {
                 {inf, inf, inf, inf}
         };
 
+        HeapExercises solution = new HeapExercises();
         System.out.println(Arrays.deepToString(Y));
-        HeapExercises.insert(Y, 7);
+        solution.insertRecursively(Y, 7);
         System.out.println(Arrays.deepToString(Y));
-        System.out.println(HeapExercises.extractMin(Y));
-        System.out.println(HeapExercises.extractMin(Y));
-        System.out.println(HeapExercises.extractMin(Y));
-        System.out.println(HeapExercises.extractMin(Y));
-        System.out.println(HeapExercises.extractMin(Y));
-        System.out.println(HeapExercises.extractMin(Y));
-        System.out.println(HeapExercises.extractMin(Y));
-        System.out.println(HeapExercises.extractMin(Y));
-        System.out.println(HeapExercises.extractMin(Y));
-        System.out.println(HeapExercises.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
+        System.out.println(solution.extractMin(Y));
 
     }
 }

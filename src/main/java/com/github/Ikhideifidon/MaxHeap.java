@@ -13,11 +13,11 @@ public class MaxHeap<E extends Object & Comparable<E>> extends HeapSort<E> imple
     private E[] container;
     private int t;
 
+    @SuppressWarnings("unchecked")
     public MaxHeap(int capacity) {
         if (capacity < 1)
             throw new ArrayStoreException("Heap underflow");
         this.t = 0;
-        //noinspection unchecked
         this.container = (E[]) new Object[capacity];
     }
 
