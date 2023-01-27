@@ -79,7 +79,12 @@ public class HeapExercisesTest {
         solution.insertRecursively(YoungTableau, 115);
         solution.insertRecursively(clonedYT, 115);
         Assertions.assertEquals(Arrays.deepToString(YoungTableau), Arrays.deepToString(clonedYT));
+    }
 
-
+    @Test
+    void testSearch() {
+        int key = rand.nextInt(1, 101);
+        boolean result = true;
+        Assertions.assertEquals(solution.search(YoungTableau, key), result);
     }
 }

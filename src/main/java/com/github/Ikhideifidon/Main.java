@@ -26,19 +26,19 @@ public class Main {
         System.out.println(Arrays.deepToString(Y));
         solution.insertRecursively(Y, 7);
         System.out.println(solution.search(Y, 12));
-        System.out.println(Arrays.deepToString(Y));
-        System.out.println(solution.extractMin(Y));
-        System.out.println(solution.extractMin(Y));
-        System.out.println(solution.extractMin(Y));
-        System.out.println(solution.extractMin(Y));
-        System.out.println(solution.extractMin(Y));
-        System.out.println(solution.extractMin(Y));
-        solution.insert(Y, 1);
-        System.out.println(Arrays.deepToString(Y));
-        System.out.println(solution.extractMin(Y));
-        System.out.println(solution.extractMin(Y));
-        System.out.println(solution.extractMin(Y));
-        System.out.println(solution.extractMin(Y));
+        // System.out.println(Arrays.deepToString(Y));
+        // System.out.println(solution.extractMin(Y));
+        // System.out.println(solution.extractMin(Y));
+        // System.out.println(solution.extractMin(Y));
+        // System.out.println(solution.extractMin(Y));
+        // System.out.println(solution.extractMin(Y));
+        // System.out.println(solution.extractMin(Y));
+        // solution.insert(Y, 1);
+        // System.out.println(Arrays.deepToString(Y));
+        // System.out.println(solution.extractMin(Y));
+        // System.out.println(solution.extractMin(Y));
+        // System.out.println(solution.extractMin(Y));
+        // System.out.println(solution.extractMin(Y));
 
     }
 }

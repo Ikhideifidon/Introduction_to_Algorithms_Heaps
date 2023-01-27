@@ -135,53 +135,26 @@ public class HeapExercises {
     public boolean search(int[][] Y, int key) {
         int m = Y.length;
         int n = Y[0].length;
-        return helper(Y, key, 0, 0, m, n);
-    }
-
-    private boolean helper(int[][] Y, int key, int i, int j, int m, int n) {
-        // Initialize some key variables
-        // Check for non-empty
-        // If Y[i][j] == key return True
-        // if Y[i][j] != key and rightward == downward == Integer.MAX_VALUE return False
-        // Find the largest between the rightward and the downward
-        // If the largest < key
-        //     move to the largest value's path
-        // Else
-        //     If the smallest is also > key
-        //         key not found (return False)
-        //     Else
-        //         move to the smallest value's path
-
-
-        int downward = i + 1 < m ? Y[i + 1][j] : Integer.MAX_VALUE;
-        int rightward = j + 1 < n ? Y[i][j + 1] : Integer.MAX_VALUE;
-
-        if (Y[i][j] == Integer.MAX_VALUE) return false;
-        if (Y[i][j] == key) return true;
-        if (Y[i][j] != key && rightward == downward && downward == Integer.MAX_VALUE) return false;
-
-        if (rightward > downward) {
-            if (rightward < key) {
-                return helper(Y, key, i, j + 1, m, n);
-            } else {
-                if (downward > key) {
-                    return false;
-                } else {
-                    return helper(Y, key, i + 1, j, m, n);
-                }
-            }
-
-        } else {
-            if (downward < key) {
-                return helper(Y, key, i + 1, j, m, n);
-            } else {
-                if (rightward > key) {
-                    return false;
-                } else {
-                    return helper(Y, key, i, j + 1, m, n);
-                }
-            }
+        int i, j;
+        i = j = 0;
+        // Search through row
+        while (i < m && Y[i][j] < key) {
+            if (Y[i][j] == key)
+                return true;
+            i++;
         }
+
+        // At this point, Y[i][j] > key
+        // Search through column
+        while (i >= 0 && j < n) {
+            if (Y[i][j] == key)
+                return true;
+            if (Y[i][j] < key)
+                j++;
+            else 
+                i--;
+        }
+        return false;
     }
 }
 
