@@ -3,6 +3,7 @@ package com.github.Ikhideifidon;
 import java.util.Arrays;
 import java.util.Random;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -48,29 +49,37 @@ public class HeapExercisesTest {
         for (int data : A) {
             solution.insert(YoungTableau, data);
         }
-        System.out.println(Arrays.deepToString(YoungTableau));
-
-
-
     }
     
     @Test
     void testExtractMin() {
-        System.out.println(solution.extractMin(YoungTableau));
-        System.out.println(solution.extractMin(YoungTableau));
-        System.out.println(solution.extractMin(YoungTableau));
-        solution.insert(YoungTableau, 102);
-        System.out.println(Arrays.deepToString(YoungTableau));
-
+        Assertions.assertEquals(YoungTableau[0][0], solution.extractMin(YoungTableau));
     }
 
     @Test
     void testInsert() {
+        int[][] clonedYT = new int[YoungTableau.length][YoungTableau[0].length];
+        // Deep copy YT
+        for (int i = 0; i < YoungTableau.length; i++) {
+            clonedYT[i] = Arrays.copyOf(YoungTableau[i], YoungTableau[i].length);
+        }
+        solution.insert(YoungTableau, 115);
+        solution.insert(clonedYT, 115);
+        Assertions.assertEquals(Arrays.deepToString(YoungTableau), Arrays.deepToString(clonedYT));
 
     }
 
     @Test
     void testInsertRecursively() {
+        int[][] clonedYT = new int[YoungTableau.length][YoungTableau[0].length];
+        // Deep copy YT
+        for (int i = 0; i < YoungTableau.length; i++) {
+            clonedYT[i] = Arrays.copyOf(YoungTableau[i], YoungTableau[i].length);
+        }
+        solution.insertRecursively(YoungTableau, 115);
+        solution.insertRecursively(clonedYT, 115);
+        Assertions.assertEquals(Arrays.deepToString(YoungTableau), Arrays.deepToString(clonedYT));
+
 
     }
 }

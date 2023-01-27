@@ -105,34 +105,82 @@ public class HeapExercises {
             Y[i][j] = Y[i - 1][j];
             Y[i - 1][j] = temp;
             helper(Y, i - 1, j);
-        }
-
-
-        
+        }   
     }
 
 
     // MinHeapify
     private void youngifyTopDown(int[][] Y, int i, int j, int m, int n) {
-        // Out of bounds
-        if (i + 1 >= m || j + 1 >= n) return;
-
+        // Permissbile directions
+        int downward = i + 1 < m ? Y[i + 1][j] : Integer.MAX_VALUE; 
+        int rightward = j + 1 < n ? Y[i][j + 1] : Integer.MAX_VALUE;
+        
         // Base case
-        if (Y[i][j + 1] == Y[i + 1][j] && Y[i + 1][j] == Integer.MAX_VALUE) return;                 // is Y empty?
+        if (rightward == downward && downward == Integer.MAX_VALUE) return; 
 
         int temp = Y[i][j];
-        if (Y[i][j + 1] < Y[i + 1][j]) {
+        if (rightward < downward) {
             // swap Y[i][j + 1] with Y[i][j]
             Y[i][j] = Y[i][j + 1];
             Y[i][j + 1] = temp;
             youngifyTopDown(Y, i, j + 1, m , n);
-        }
-
-        else {
+        } else {
             // swap Y[i + 1][j] with Y[i][j]
             Y[i][j] = Y[i + 1][j];
             Y[i + 1][j] = temp;
             youngifyTopDown(Y, i + 1, j, m, n);
+        }
+    }
+
+    public boolean search(int[][] Y, int key) {
+        int m = Y.length;
+        int n = Y[0].length;
+        return helper(Y, key, 0, 0, m, n);
+    }
+
+    private boolean helper(int[][] Y, int key, int i, int j, int m, int n) {
+        // Initialize some key variables
+        // Check for non-empty
+        // If Y[i][j] == key return True
+        // if Y[i][j] != key and rightward == downward == Integer.MAX_VALUE return False
+        // Find the largest between the rightward and the downward
+        // If the largest < key
+        //     move to the largest value's path
+        // Else
+        //     If the smallest is also > key
+        //         key not found (return False)
+        //     Else
+        //         move to the smallest value's path
+
+
+        int downward = i + 1 < m ? Y[i + 1][j] : Integer.MAX_VALUE;
+        int rightward = j + 1 < n ? Y[i][j + 1] : Integer.MAX_VALUE;
+
+        if (Y[i][j] == Integer.MAX_VALUE) return false;
+        if (Y[i][j] == key) return true;
+        if (Y[i][j] != key && rightward == downward && downward == Integer.MAX_VALUE) return false;
+
+        if (rightward > downward) {
+            if (rightward < key) {
+                return helper(Y, key, i, j + 1, m, n);
+            } else {
+                if (downward > key) {
+                    return false;
+                } else {
+                    return helper(Y, key, i + 1, j, m, n);
+                }
+            }
+
+        } else {
+            if (downward < key) {
+                return helper(Y, key, i + 1, j, m, n);
+            } else {
+                if (rightward > key) {
+                    return false;
+                } else {
+                    return helper(Y, key, i, j + 1, m, n);
+                }
+            }
         }
     }
 }
