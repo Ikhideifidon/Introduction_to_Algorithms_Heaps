@@ -43,7 +43,7 @@ public class HeapExercises {
         int max = Integer.MAX_VALUE;
         int temp = 0;
 
-        while ((x > 0 || y > 0) && max > Y[i][j]) {
+        while ((i > 0 || i > 0) && max > Y[i][j]) {
             // Swap Y[i][j] with Y[x][y]
             temp = Y[i][j];
             Y[i][j] = Y[x][y];

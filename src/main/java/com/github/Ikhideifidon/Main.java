@@ -32,6 +32,8 @@ public class Main {
         System.out.println(solution.extractMin(Y));
         System.out.println(solution.extractMin(Y));
         System.out.println(solution.extractMin(Y));
+        solution.insert(Y, 1);
+        System.out.println(Arrays.deepToString(Y));
         System.out.println(solution.extractMin(Y));
         System.out.println(solution.extractMin(Y));
         System.out.println(solution.extractMin(Y));

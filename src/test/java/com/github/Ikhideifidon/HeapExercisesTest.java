@@ -48,13 +48,20 @@ public class HeapExercisesTest {
         for (int data : A) {
             solution.insert(YoungTableau, data);
         }
-        System.out.println(solution.extractMin(YoungTableau));
+        System.out.println(Arrays.deepToString(YoungTableau));
+
 
 
     }
     
     @Test
     void testExtractMin() {
+        System.out.println(solution.extractMin(YoungTableau));
+        System.out.println(solution.extractMin(YoungTableau));
+        System.out.println(solution.extractMin(YoungTableau));
+        solution.insert(YoungTableau, 102);
+        System.out.println(Arrays.deepToString(YoungTableau));
+
     }
 
     @Test
